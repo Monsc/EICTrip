@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "routes",
+  "info": {
+    "singularName": "route",
+    "pluralName": "routes",
+    "displayName": "Route"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "desc": {
+      "type": "blocks"
+    },
+    "price": {
+      "type": "string"
+    },
+    "days": {
+      "type": "biginteger"
+    },
+    "destination": {
+      "type": "blocks"
+    },
+    "image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "itinerary": {
+      "type": "blocks"
+    },
+    "tags": {
+      "type": "string"
+    }
+  }
+}
