@@ -1,16 +1,20 @@
 // 自动生成，增加示例线路 seed 逻辑
-import type { Strapi } from '@strapi/strapi';
+import type { Strapi } from '@strapi/types';
 
 export default {
+  // 预留扩展
   register(/* { strapi }: { strapi: Strapi } */) {},
 
+  // 启动时自动插入示例数据（仅在 routes 为空时执行一次）
   bootstrap: async ({ strapi }: { strapi: Strapi }) => {
     const existing = await strapi.entityService.count('api::route.route');
     if (existing > 0) {
       strapi.log.info(`Seed skipped: 已存在 ${existing} 条路线`);
       return;
     }
+
     strapi.log.info('Seed: 插入示例线路');
+
     const sample = [
       {
         title: '日本樱花 · 东京-京都6日精品游',
@@ -23,7 +27,7 @@ export default {
         title: '巴尔干三国秘境 · 塞尔维亚-波黑-黑山8日',
         slug: 'balkan-3countries-8d',
         description: '穿越最后的欧洲秘境，感受多元宗教与壮丽山海。',
-        price: '¥14999 起',
+        price: '¥15999 起',
         tags: '欧洲,巴尔干,探秘',
       },
       {
