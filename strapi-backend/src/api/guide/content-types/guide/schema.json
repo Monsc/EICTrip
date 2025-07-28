@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "guides",
+  "info": {
+    "singularName": "guide",
+    "pluralName": "guides",
+    "displayName": "Guide"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name_zh": { "type": "string" },
+    "name_en": { "type": "string" },
+    "avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "bio_zh": { "type": "text" },
+    "bio_en": { "type": "text" },
+    "languages": { "type": "json" },
+    "rating": { "type": "decimal" }
+  }
+} 

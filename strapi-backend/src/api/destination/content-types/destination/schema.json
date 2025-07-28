@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "destinations",
+  "info": {
+    "singularName": "destination",
+    "pluralName": "destinations",
+    "displayName": "Destination"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name_zh": { "type": "string" },
+    "name_en": { "type": "string" },
+    "country_zh": { "type": "string" },
+    "country_en": { "type": "string" },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "description_zh": { "type": "text" },
+    "description_en": { "type": "text" }
+  }
+} 

@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "tour": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tour.tour"
+    },
+    "status": { "type": "enumeration", "enum": ["pending", "paid", "cancelled", "completed"] },
+    "price": { "type": "decimal" },
+    "orderNo": { "type": "string" },
+    "remark": { "type": "text" },
+    "createdAt": { "type": "datetime" },
+    "paymentStatus": { "type": "enumeration", "enum": ["unpaid", "paid", "failed", "refunded"], "default": "unpaid" },
+    "review": { "type": "text" },
+    "rating": { "type": "integer" },
+    "cancelReason": { "type": "text" }
+  }
+} 

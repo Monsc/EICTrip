@@ -1,7 +1,9 @@
-export default ({ env }) => ({
-  host: env('HOST', '0.0.0.0'),
-  port: env.int('PORT', 1337),
+import { StrapiConfig } from '@strapi/types';
+
+const config: StrapiConfig = {
   app: {
-    keys: env.array('APP_KEYS'),
+    keys: ['joytotrip-key-A', 'joytotrip-key-B'],
   },
-});
+};
+
+export default config;

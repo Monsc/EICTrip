@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tours",
+  "info": {
+    "singularName": "tour",
+    "pluralName": "tours",
+    "displayName": "Tour"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title_zh": { "type": "string" },
+    "title_en": { "type": "string" },
+    "description_zh": { "type": "text" },
+    "description_en": { "type": "text" },
+    "price": { "type": "string" },
+    "days": { "type": "integer" },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "tags": { "type": "string" },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category"
+    },
+    "destination": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::destination.destination"
+    },
+    "isTrending": { "type": "boolean" },
+    "isBestSeller": { "type": "boolean" }
+  }
+} 
