@@ -7,13 +7,32 @@ import TourGuides from '../components/TourGuides/TourGuides'
 
 function Home() {
   return (
-    <div className="home">
-      <Hero />
-      <TopDestinations />
-      <BestSeller />
-      <TrendingTours />
-      <TourGuides />
-    </div>
+    <main className="bg-white min-h-screen">
+      {/* Hero Section */}
+      <section id="hero">
+        <Hero />
+      </section>
+
+      {/* Top Destinations Section */}
+      <section id="top-destinations">
+        <TopDestinations />
+      </section>
+
+      {/* Best Seller Section */}
+      <section id="best-seller">
+        <BestSeller />
+      </section>
+
+      {/* Trending Tours Section */}
+      <section id="trending-tours">
+        <TrendingTours />
+      </section>
+
+      {/* Tour Guides Section */}
+      <section id="tour-guides">
+        <TourGuides />
+      </section>
+    </main>
   )
 }
 

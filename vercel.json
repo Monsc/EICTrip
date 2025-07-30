@@ -1,5 +1,4 @@
 {
-  "rootDirectory": "joytotrip-pro-frontend-full",
   "builds": [
     {
       "src": "package.json",
