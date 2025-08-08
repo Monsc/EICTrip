@@ -19,9 +19,9 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold text-primary-400 mb-4">JoyToTrip</h3>
+            <h3 className="text-2xl font-bold text-primary-400 mb-4">EICTrip</h3>
             <p className="text-gray-300 mb-6">
-              The Brilliant reasons JoyToTrip be your one-stop-shop for unforgettable travel experiences!
+              The Brilliant reasons EICTrip be your one-stop-shop for unforgettable travel experiences!
             </p>
             <div className="flex space-x-4">
               <a href="#" className="bg-primary-600 hover:bg-primary-700 p-2 rounded-full transition-colors">
@@ -75,7 +75,7 @@ function Footer() {
               </div>
               <div className="flex items-center">
                 <FaEnvelope className="mr-3 text-primary-400" />
-                <span>info@joytotrip.com</span>
+                <span>info@eictrip.com</span>
               </div>
               <div className="flex items-center">
                 <FaPhone className="mr-3 text-primary-400" />
@@ -97,10 +97,10 @@ function Footer() {
                 <h3 className="text-xl font-semibold">For Sales</h3>
               </div>
               <p className="text-gray-300 mb-2">
-                The Brilliant reasons JoyToTrip be your one-stop-shop!
+                The Brilliant reasons EICTrip be your one-stop-shop!
               </p>
               <div className="text-primary-400">
-                <div>sales@joytotrip.com</div>
+                <div>sales@eictrip.com</div>
                 <div>+1 (555) 123-4567</div>
               </div>
             </div>
@@ -115,7 +115,7 @@ function Footer() {
                 We are available 24/7 to answer our clients queries.
               </p>
               <div className="text-primary-400">
-                <div>support@joytotrip.com</div>
+                <div>support@eictrip.com</div>
                 <div>+1 (555) 123-4567</div>
               </div>
             </div>
@@ -128,7 +128,7 @@ function Footer() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 JoyToTrip. All rights reserved.
+              © 2024 EICTrip. All rights reserved.
             </div>
             <div className="flex items-center space-x-6 text-sm">
               <Link to="/privacy" className="text-gray-400 hover:text-white transition-colors">

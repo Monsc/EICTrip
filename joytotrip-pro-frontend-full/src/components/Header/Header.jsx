@@ -29,7 +29,7 @@ function Header() {
         <div className="container mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center space-x-4">
             <span>📞 +1 (555) 123-4567</span>
-            <span>📧 info@joytotrip.com</span>
+            <span>📧 info@eictrip.com</span>
           </div>
           <div className="flex items-center space-x-4">
             <select className="bg-transparent border-none text-white">
@@ -51,7 +51,7 @@ function Header() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold text-primary-600">
-            JoyToTrip
+            EICTrip
           </Link>
 
           {/* Desktop Navigation */}

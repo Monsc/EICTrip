@@ -21,7 +21,7 @@ function TestComponent() {
           </div>
           <div className="bg-purple-100 p-4 rounded-lg">
             <h3 className="font-semibold text-purple-800">🚀 准备就绪</h3>
-            <p className="text-purple-600 text-sm">可以开始开发 JoyToTrip 了</p>
+            <p className="text-purple-600 text-sm">可以开始开发 EICTrip 了</p>
           </div>
         </div>
         <button className="w-full mt-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">

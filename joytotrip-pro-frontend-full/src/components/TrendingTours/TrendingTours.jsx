@@ -14,7 +14,7 @@ function TrendingTours() {
       duration: "7 Days",
       image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
       discount: 20,
-      badges: ["New on JoyToTrip", "Free Cancellation"]
+                    badges: ["New on EICTrip", "Free Cancellation"]
     },
     {
       id: 2,
