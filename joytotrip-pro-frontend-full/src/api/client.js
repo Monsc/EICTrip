@@ -51,4 +51,6 @@ apiClient.interceptors.response.use(
   }
 )
 
+// 同时支持默认导出和命名导出
+export { apiClient }
 export default apiClient

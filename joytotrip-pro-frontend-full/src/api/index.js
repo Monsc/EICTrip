@@ -1,18 +1,23 @@
-// API 统一导出
-export { default as apiClient } from './client'
-export { default as authAPI } from './auth'
-export { default as toursAPI } from './tours'
-export { default as destinationsAPI } from './destinations'
-export { default as guidesAPI } from './guides'
-export { default as ordersAPI } from './orders'
-export { default as paymentsAPI } from './payments'
+// API客户端
+export { apiClient } from './client'
 
-// 默认导出所有 API
-export default {
-  auth: authAPI,
-  tours: toursAPI,
-  destinations: destinationsAPI,
-  guides: guidesAPI,
-  orders: ordersAPI,
-  payments: paymentsAPI
-}
+// 认证API
+export { authAPI } from './auth'
+
+// 旅游产品API
+export { toursAPI } from './tours'
+
+// 目的地API
+export { destinationsAPI } from './destinations'
+
+// 导游API
+export { guidesAPI } from './guides'
+
+// 订单API
+export { ordersAPI } from './orders'
+
+// 支付API
+export { paymentsAPI } from './payments'
+
+// 评价API
+export { reviewsAPI } from './reviews'
