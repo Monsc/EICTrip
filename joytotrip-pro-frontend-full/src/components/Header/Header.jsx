@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../context/AuthContext'
 import { 
   FaSearch, 
   FaUser, 
@@ -8,12 +9,32 @@ import {
   FaBars, 
   FaTimes,
   FaHeart,
-  FaShoppingCart
+  FaShoppingCart,
+  FaSignOutAlt,
+  FaCog
 } from 'react-icons/fa'
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false)
+  
+  const { user, isAuthenticated, logout } = useAuth()
+  const userDropdownRef = useRef(null)
+
+  // 点击外部关闭用户下拉菜单
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (userDropdownRef.current && !userDropdownRef.current.contains(event.target)) {
+        setIsUserDropdownOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const destinations = [
     { name: 'Africa', countries: ['Botswana', 'Egypt', 'Kenya', 'Morocco', 'South Africa', 'Tanzania'] },
@@ -120,13 +141,67 @@ function Header() {
             <Link to="/my-orders" className="p-2 text-gray-600 hover:text-primary-600 transition-colors">
               <FaShoppingCart />
             </Link>
-            <Link to="/login" className="btn-secondary">
-              <FaUser className="mr-2" />
-              Sign In
-            </Link>
-            <Link to="/register" className="btn-primary">
-              Add Listing
-            </Link>
+            
+            {/* 用户认证状态 */}
+            {isAuthenticated ? (
+              <div className="relative" ref={userDropdownRef}>
+                <button
+                  onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                  className="flex items-center space-x-2 text-gray-700 hover:text-primary-600 transition-colors"
+                >
+                  <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center">
+                    <FaUser className="text-primary-600" />
+                  </div>
+                  <span className="font-medium">
+                    {user?.firstName || user?.username || '用户'}
+                  </span>
+                </button>
+                
+                {isUserDropdownOpen && (
+                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
+                    <Link
+                      to="/profile"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                    >
+                      <FaUser className="mr-2" />
+                      个人资料
+                    </Link>
+                    <Link
+                      to="/my-orders"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                    >
+                      <FaShoppingCart className="mr-2" />
+                      我的订单
+                    </Link>
+                    <Link
+                      to="/settings"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 flex items-center"
+                    >
+                      <FaCog className="mr-2" />
+                      设置
+                    </Link>
+                    <hr className="my-1" />
+                    <button
+                      onClick={logout}
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 flex items-center"
+                    >
+                      <FaSignOutAlt className="mr-2" />
+                      退出登录
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <Link to="/login" className="btn-secondary">
+                  <FaUser className="mr-2" />
+                  登录
+                </Link>
+                <Link to="/register" className="btn-primary">
+                  注册
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -158,12 +233,25 @@ function Header() {
                 Contact
               </Link>
               <div className="flex space-x-4 pt-4">
-                <Link to="/login" className="btn-secondary flex-1 text-center">
-                  Sign In
-                </Link>
-                <Link to="/register" className="btn-primary flex-1 text-center">
-                  Register
-                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <Link to="/profile" className="btn-secondary flex-1 text-center">
+                      个人资料
+                    </Link>
+                    <button onClick={logout} className="btn-primary flex-1 text-center">
+                      退出登录
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login" className="btn-secondary flex-1 text-center">
+                      登录
+                    </Link>
+                    <Link to="/register" className="btn-primary flex-1 text-center">
+                      注册
+                    </Link>
+                  </>
+                )}
               </div>
             </nav>
           </div>
