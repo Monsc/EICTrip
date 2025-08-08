@@ -21,3 +21,6 @@ export { paymentsAPI } from './payments'
 
 // 评价API
 export { reviewsAPI } from './reviews'
+
+// 通知API
+export { notificationsAPI } from './notifications'
