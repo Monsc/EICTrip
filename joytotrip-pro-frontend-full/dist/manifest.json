@@ -1,0 +1,27 @@
+{
+  "name": "EICTrip - 全球华人民宿司导平台",
+  "short_name": "EICTrip",
+  "description": "专为中国出境游游客提供优质的民宿预订和司导服务",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e40af",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["travel", "lifestyle"],
+  "lang": "zh-CN",
+  "dir": "ltr"
+}

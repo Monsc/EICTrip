@@ -12,6 +12,7 @@ import RoutesPage from './pages/Routes'
 import RouteDetail from './pages/RouteDetail'
 import MyOrders from './pages/MyOrders'
 import OrderDetail from './pages/OrderDetail'
+import Payment from './pages/Payment'
 import RootLayout from './layouts/RootLayout'
 
 function App() {
@@ -41,6 +42,14 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <OrderDetail />
+                  </ProtectedRoute>
+                } 
+              />
+              <Route 
+                path="payment/:orderId" 
+                element={
+                  <ProtectedRoute>
+                    <Payment />
                   </ProtectedRoute>
                 } 
               />
