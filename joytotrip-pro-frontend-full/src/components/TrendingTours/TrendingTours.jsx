@@ -1,82 +1,120 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { FaStar, FaMapMarkerAlt, FaClock, FaHeart } from 'react-icons/fa'
+import { toursAPI } from '../../api'
+import LoadingSpinner from '../LoadingSpinner'
 
 function TrendingTours() {
-  const trendingTours = [
-    {
-      id: 1,
-      title: "Full-Day Catamaran Cruise to Hvar & Pakleni Islands",
-      category: "Beach Tours",
-      location: "Dubrovnik",
-      price: 895,
-      rating: 4.7,
-      reviews: 577,
-      duration: "7 Days",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      discount: 20,
-                    badges: ["New on EICTrip", "Free Cancellation"]
-    },
-    {
-      id: 2,
-      title: "Circle Line: Complete Manhattan Island Cruise",
-      category: "City Tour",
-      location: "New York",
-      price: 795,
-      rating: 4.3,
-      reviews: 109,
-      duration: "7 Days",
-      image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badges: ["Best Seller", "Free Cancellation"]
-    },
-    {
-      id: 3,
-      title: "Blue Lagoon & 3 Islands Half-day Trip from Split",
-      category: "Hiking Tour",
-      location: "Stoke on Trent",
-      price: 695,
-      rating: 5.0,
-      reviews: 208,
-      duration: "7 Days",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badges: ["Free Lunch", "Free Cancellation"]
-    },
-    {
-      id: 4,
-      title: "Private Tour: Montenegro Day Trip from Dubrovnik",
-      category: "Hiking Tour",
-      location: "Stoke on Trent",
-      price: 995,
-      rating: 4.5,
-      reviews: 6718,
-      duration: "7 Days",
-      image: "https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badges: ["All Access", "Free Cancellation"]
-    },
-    {
-      id: 5,
-      title: "Old Town, Dubai Creek, Souks, and Street Food Tour",
-      category: "Hiking Tour",
-      location: "Stoke on Trent",
-      price: 395,
-      rating: 4.7,
-      reviews: 310,
-      duration: "7 Days",
-      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badges: ["5 Seats Left", "Free Cancellation"]
-    },
-    {
-      id: 6,
-      title: "Hamilton Live! Walking Tour in lower Manhattan",
-      category: "Hiking Tour",
-      location: "Stoke on Trent",
-      price: 295,
-      rating: 4.3,
-      reviews: 205,
-      duration: "7 Days",
-      image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      badges: ["Trending", "Free Cancellation"]
+  const [trendingTours, setTrendingTours] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+
+  // 获取热门旅游产品数据
+  useEffect(() => {
+    const fetchTrendingTours = async () => {
+      try {
+        setLoading(true)
+        const response = await toursAPI.getTrendingTours(6)
+        
+        // 转换 Strapi 数据格式为组件需要的格式
+        const tours = response.data.map(tour => ({
+          id: tour.id,
+          title: tour.attributes.title_zh || tour.attributes.title_en,
+          category: tour.attributes.category?.data?.attributes?.name || '旅游',
+          location: tour.attributes.destination?.data?.attributes?.name || '目的地',
+          price: parseFloat(tour.attributes.price) || 0,
+          rating: 4.5, // 默认评分
+          reviews: Math.floor(Math.random() * 500) + 50, // 随机评论数
+          duration: `${tour.attributes.days || 7} 天`,
+          image: tour.attributes.image?.data?.attributes?.url || 
+                 `https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`,
+          badges: ["热门推荐", "免费取消"]
+        }))
+        
+        setTrendingTours(tours)
+      } catch (err) {
+        console.error('获取热门旅游产品失败:', err)
+        setError('获取数据失败，请稍后重试')
+        
+        // 如果 API 失败，使用默认数据
+        setTrendingTours([
+          {
+            id: 1,
+            title: "克罗地亚杜布罗夫尼克全日游",
+            category: "海滩旅游",
+            location: "杜布罗夫尼克",
+            price: 895,
+            rating: 4.7,
+            reviews: 577,
+            duration: "7 天",
+            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            badges: ["EICTrip 推荐", "免费取消"]
+          },
+          {
+            id: 2,
+            title: "纽约曼哈顿环岛游船",
+            category: "城市观光",
+            location: "纽约",
+            price: 795,
+            rating: 4.3,
+            reviews: 109,
+            duration: "7 天",
+            image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            badges: ["畅销产品", "免费取消"]
+          }
+        ])
+      } finally {
+        setLoading(false)
+      }
     }
-  ]
+
+    fetchTrendingTours()
+  }, [])
+
+  // 显示加载状态
+  if (loading) {
+    return (
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              热门推荐 2024
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              基于用户预订的热门旅游产品
+            </p>
+          </div>
+          <LoadingSpinner size="lg" text="正在加载热门旅游产品..." />
+        </div>
+      </section>
+    )
+  }
+
+  // 显示错误状态
+  if (error) {
+    return (
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              热门推荐 2024
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              基于用户预订的热门旅游产品
+            </p>
+          </div>
+          <div className="text-center">
+            <p className="text-red-600 mb-4">{error}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="bg-primary-600 text-white px-6 py-2 rounded-lg hover:bg-primary-700 transition-colors"
+            >
+              重新加载
+            </button>
+          </div>
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section className="py-20 bg-gray-50">
@@ -84,10 +122,10 @@ function TrendingTours() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">
-            Trending 2024
+            热门推荐 2024
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            The trending tours are based on user bookings.
+            基于用户预订的热门旅游产品
           </p>
         </div>
 
